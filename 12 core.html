@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button class="send">send</button>
+  <!-- 引入Axios CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!-- ajax -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script>
+    // document.querySelector('.send').addEventListener('click', () => {
+    // axios({
+    // url: 'http://127.0.0.1:8080/api/get',
+    // params: {
+    // name: 'rf',
+    // age: 12
+    // }
+    // }).then(res => {
+    // console.log(res)
+    // })
+    // })
+    document.querySelector('.send').addEventListener('click', () => {
+      // axios 本身不支持 jsonp 这种 dataType（不同于 ajax）
+      // axios({
+      // url: 'http://127.0.0.1:8080/api/jsonp',
+      // dataType: 'jsonp',
+      // }).then(res => {
+      // console.log(res)
+      // })
+      $.ajax({
+        url: 'http://127.0.0.1:8080/api/jsonp',
+        dataType: 'jsonp',
+        method: 'GET',
+        success: function (res) {
+          console.log(res)
+        }
+      })
+    })
+  </script>
+  <!-- 跨域访问失败 -->
+  <!-- Access to XMLHttpRequest at 'http://127.0.0.1:8080/api/get?name=rf&age=12' from origin 'null' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. -->
+</body>
+
+</html>
